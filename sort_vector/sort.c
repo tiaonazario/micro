@@ -51,5 +51,7 @@ int main()
   printf("\nVetor ordenado: ");
   print_array(array, size);
 
+  printf("\n");
+
   return 0;
 }
