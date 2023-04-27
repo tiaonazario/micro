@@ -1,0 +1,137 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -16.249
+TNS   : -7369.181
+
+Type  : Slow 1200mV 85C Model Setup 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : -15.649
+TNS   : -16494.386
+
+Type  : Slow 1200mV 85C Model Setup 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : -0.085
+TNS   : -0.085
+
+Type  : Slow 1200mV 85C Model Hold 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : -0.326
+TNS   : -0.326
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : 0.184
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : 0.253
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'clk'
+Slack : -0.801
+TNS   : -20.030
+
+Type  : Slow 1200mV 85C Model Removal 'clk'
+Slack : 0.734
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -893.544
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : -1.000
+TNS   : -1314.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : 0.345
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -14.526
+TNS   : -6579.711
+
+Type  : Slow 1200mV 0C Model Setup 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : -13.886
+TNS   : -14627.116
+
+Type  : Slow 1200mV 0C Model Setup 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : -0.077
+TNS   : -0.077
+
+Type  : Slow 1200mV 0C Model Hold 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : -0.216
+TNS   : -0.216
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : 0.158
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : 0.249
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'clk'
+Slack : -0.608
+TNS   : -11.850
+
+Type  : Slow 1200mV 0C Model Removal 'clk'
+Slack : 0.673
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -893.544
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : -1.000
+TNS   : -1314.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : 0.428
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -9.241
+TNS   : -4101.638
+
+Type  : Fast 1200mV 0C Model Setup 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : -8.842
+TNS   : -9203.809
+
+Type  : Fast 1200mV 0C Model Setup 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : 0.228
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : -0.038
+TNS   : -0.038
+
+Type  : Fast 1200mV 0C Model Hold 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : 0.079
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : 0.166
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'clk'
+Slack : -0.045
+TNS   : -0.231
+
+Type  : Fast 1200mV 0C Model Removal 'clk'
+Slack : 0.397
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -642.346
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'leaf:soc_cpu|wb_ctrl:leaf_master|clk'
+Slack : -1.000
+TNS   : -1314.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'leaf:soc_cpu|wb_ctrl:leaf_master|curr_state.EXECUTE'
+Slack : 0.331
+TNS   : 0.000
+
+------------------------------------------------------------

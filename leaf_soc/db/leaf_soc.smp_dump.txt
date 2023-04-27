@@ -1,0 +1,26 @@
+
+State Machine - |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|curr_state
+Name curr_state.TX_STOP curr_state.TX_DATA curr_state.TX_START curr_state.IDLE curr_state.START 
+curr_state.START 0 0 0 0 0 
+curr_state.IDLE 0 0 0 1 1 
+curr_state.TX_START 0 0 1 0 1 
+curr_state.TX_DATA 0 1 0 0 1 
+curr_state.TX_STOP 1 0 0 0 1 
+
+State Machine - |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|curr_state
+Name curr_state.RX_STOP curr_state.RX_DATA curr_state.RX_START curr_state.IDLE curr_state.START 
+curr_state.START 0 0 0 0 0 
+curr_state.IDLE 0 0 0 1 1 
+curr_state.RX_START 0 0 1 0 1 
+curr_state.RX_DATA 0 1 0 0 1 
+curr_state.RX_STOP 1 0 0 0 1 
+
+State Machine - |leaf_soc|leaf:soc_cpu|wb_ctrl:leaf_master|curr_state
+Name curr_state.EXECUTE curr_state.WRITE_DATA curr_state.RMW_CYCLE curr_state.READ_DATA curr_state.BRD_CYCLE curr_state.READ_INSTR curr_state.START 
+curr_state.START 0 0 0 0 0 0 0 
+curr_state.READ_INSTR 0 0 0 0 0 1 1 
+curr_state.BRD_CYCLE 0 0 0 0 1 0 1 
+curr_state.READ_DATA 0 0 0 1 0 0 1 
+curr_state.RMW_CYCLE 0 0 1 0 0 0 1 
+curr_state.WRITE_DATA 0 1 0 0 0 0 1 
+curr_state.EXECUTE 1 0 0 0 0 0 1 

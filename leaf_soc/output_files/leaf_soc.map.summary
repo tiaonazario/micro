@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Apr 26 15:08:46 2023
+Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : leaf_soc
+Top-level Entity Name : leaf_soc
+Family : Cyclone IV E
+Total logic elements : 4,701
+    Total combinational functions : 3,539
+    Dedicated logic registers : 1,648
+Total registers : 1648
+Total pins : 12
+Total virtual pins : 0
+Total memory bits : 524,288
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

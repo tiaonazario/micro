@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="leaf_soc">
+		<CBX_INST_ENTRY INSTANCE_NAME="|leaf_soc|ram:soc_ram|altsyncram:mem0_rtl_0" CBX_FILE_NAME="altsyncram_c3e1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|leaf_soc|ram:soc_ram|altsyncram:mem1_rtl_0" CBX_FILE_NAME="altsyncram_c3e1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|leaf_soc|ram:soc_ram|altsyncram:mem2_rtl_0" CBX_FILE_NAME="altsyncram_c3e1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|leaf_soc|ram:soc_ram|altsyncram:mem3_rtl_0" CBX_FILE_NAME="altsyncram_c3e1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

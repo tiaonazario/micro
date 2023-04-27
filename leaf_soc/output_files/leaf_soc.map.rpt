@@ -1,0 +1,1400 @@
+Analysis & Synthesis report for leaf_soc
+Wed Apr 26 15:08:46 2023
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|curr_state
+ 10. State Machine - |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|curr_state
+ 11. State Machine - |leaf_soc|leaf:soc_cpu|wb_ctrl:leaf_master|curr_state
+ 12. User-Specified and Inferred Latches
+ 13. Registers Removed During Synthesis
+ 14. Removed Registers Triggering Further Register Optimizations
+ 15. General Register Statistics
+ 16. Inverted Register Statistics
+ 17. Registers Packed Into Inferred Megafunctions
+ 18. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 19. Source assignments for ram:soc_ram|altsyncram:mem0_rtl_0|altsyncram_c3e1:auto_generated
+ 20. Source assignments for ram:soc_ram|altsyncram:mem2_rtl_0|altsyncram_c3e1:auto_generated
+ 21. Source assignments for ram:soc_ram|altsyncram:mem1_rtl_0|altsyncram_c3e1:auto_generated
+ 22. Source assignments for ram:soc_ram|altsyncram:mem3_rtl_0|altsyncram_c3e1:auto_generated
+ 23. Parameter Settings for User Entity Instance: leaf:soc_cpu
+ 24. Parameter Settings for User Entity Instance: leaf:soc_cpu|core:leaf_core
+ 25. Parameter Settings for User Entity Instance: leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage
+ 26. Parameter Settings for User Entity Instance: leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs
+ 27. Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|fifo:rx_fifo
+ 28. Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter
+ 29. Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter
+ 30. Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo
+ 31. Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|fifo:tx_fifo
+ 32. Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter
+ 33. Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:tx_counter
+ 34. Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso
+ 35. Parameter Settings for User Entity Instance: rom:soc_rom
+ 36. Parameter Settings for User Entity Instance: ram:soc_ram
+ 37. Parameter Settings for Inferred Entity Instance: ram:soc_ram|altsyncram:mem0_rtl_0
+ 38. Parameter Settings for Inferred Entity Instance: ram:soc_ram|altsyncram:mem2_rtl_0
+ 39. Parameter Settings for Inferred Entity Instance: ram:soc_ram|altsyncram:mem1_rtl_0
+ 40. Parameter Settings for Inferred Entity Instance: ram:soc_ram|altsyncram:mem3_rtl_0
+ 41. altsyncram Parameter Settings by Entity Instance
+ 42. Port Connectivity Checks: "uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:tx_counter"
+ 43. Port Connectivity Checks: "uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter"
+ 44. Port Connectivity Checks: "leaf:soc_cpu|core:leaf_core"
+ 45. Port Connectivity Checks: "leaf:soc_cpu"
+ 46. Elapsed Time Per Partition
+ 47. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Apr 26 15:08:46 2023           ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; leaf_soc                                        ;
+; Top-level Entity Name              ; leaf_soc                                        ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 4,701                                           ;
+;     Total combinational functions  ; 3,539                                           ;
+;     Dedicated logic registers      ; 1,648                                           ;
+; Total registers                    ; 1648                                            ;
+; Total pins                         ; 12                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 524,288                                         ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE22F17C6       ;                    ;
+; Top-level entity name                                                      ; leaf_soc           ; leaf_soc           ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                     ; Library ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
+; sources/wb_ctrl.vhdl             ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/wb_ctrl.vhdl                                    ;         ;
+; sources/uart_wbsl.vhdl           ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/uart_wbsl.vhdl                                  ;         ;
+; sources/uart_tx.vhdl             ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/uart_tx.vhdl                                    ;         ;
+; sources/uart_rx.vhdl             ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/uart_rx.vhdl                                    ;         ;
+; sources/uart_pkg.vhdl            ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/uart_pkg.vhdl                                   ;         ;
+; sources/uart.vhdl                ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/uart.vhdl                                       ;         ;
+; sources/soc_syscon.vhdl          ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/soc_syscon.vhdl                                 ;         ;
+; sources/sipo.vhdl                ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/sipo.vhdl                                       ;         ;
+; sources/rom.vhdl                 ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/rom.vhdl                                        ;         ;
+; sources/reg_file.vhdl            ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/reg_file.vhdl                                   ;         ;
+; sources/ram.vhdl                 ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/ram.vhdl                                        ;         ;
+; sources/piso.vhdl                ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/piso.vhdl                                       ;         ;
+; sources/main_ctrl.vhdl           ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/main_ctrl.vhdl                                  ;         ;
+; sources/lsu.vhdl                 ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/lsu.vhdl                                        ;         ;
+; sources/leaf_soc_pkg.vhdl        ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/leaf_soc_pkg.vhdl                               ;         ;
+; sources/leaf.vhdl                ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/leaf.vhdl                                       ;         ;
+; sources/int_strg.vhdl            ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/int_strg.vhdl                                   ;         ;
+; sources/imm_gen.vhdl             ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/imm_gen.vhdl                                    ;         ;
+; sources/if_stage.vhdl            ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/if_stage.vhdl                                   ;         ;
+; sources/id_ex_stage.vhdl         ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/id_ex_stage.vhdl                                ;         ;
+; sources/id_block.vhdl            ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/id_block.vhdl                                   ;         ;
+; sources/fifo.vhdl                ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/fifo.vhdl                                       ;         ;
+; sources/ex_block.vhdl            ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/ex_block.vhdl                                   ;         ;
+; sources/down_counter.vhdl        ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/down_counter.vhdl                               ;         ;
+; sources/debug_reg.vhdl           ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/debug_reg.vhdl                                  ;         ;
+; sources/csrs.vhdl                ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/csrs.vhdl                                       ;         ;
+; sources/core_pkg.vhdl            ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/core_pkg.vhdl                                   ;         ;
+; sources/core.vhdl                ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/core.vhdl                                       ;         ;
+; sources/br_detector.vhdl         ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/br_detector.vhdl                                ;         ;
+; sources/alu_ctrl.vhdl            ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/alu_ctrl.vhdl                                   ;         ;
+; sources/alu.vhdl                 ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/sources/alu.vhdl                                        ;         ;
+; leaf_soc.vhdl                    ; yes             ; User VHDL File               ; D:/www/projects/leaf_soc/leaf_soc.vhdl                                           ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; d:/programs/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_c3e1.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/www/projects/leaf_soc/db/altsyncram_c3e1.tdf                                  ;         ;
+; db/decode_jsa.tdf                ; yes             ; Auto-Generated Megafunction  ; D:/www/projects/leaf_soc/db/decode_jsa.tdf                                       ;         ;
+; db/mux_3nb.tdf                   ; yes             ; Auto-Generated Megafunction  ; D:/www/projects/leaf_soc/db/mux_3nb.tdf                                          ;         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                        ;
++---------------------------------------------+--------------------------------------+
+; Resource                                    ; Usage                                ;
++---------------------------------------------+--------------------------------------+
+; Estimated Total logic elements              ; 4,701                                ;
+;                                             ;                                      ;
+; Total combinational functions               ; 3539                                 ;
+; Logic element usage by number of LUT inputs ;                                      ;
+;     -- 4 input functions                    ; 2487                                 ;
+;     -- 3 input functions                    ; 656                                  ;
+;     -- <=2 input functions                  ; 396                                  ;
+;                                             ;                                      ;
+; Logic elements by mode                      ;                                      ;
+;     -- normal mode                          ; 3323                                 ;
+;     -- arithmetic mode                      ; 216                                  ;
+;                                             ;                                      ;
+; Total registers                             ; 1648                                 ;
+;     -- Dedicated logic registers            ; 1648                                 ;
+;     -- I/O registers                        ; 0                                    ;
+;                                             ;                                      ;
+; I/O pins                                    ; 12                                   ;
+; Total memory bits                           ; 524288                               ;
+; Embedded Multiplier 9-bit elements          ; 0                                    ;
+; Maximum fan-out node                        ; leaf:soc_cpu|wb_ctrl:leaf_master|clk ;
+; Maximum fan-out                             ; 1315                                 ;
+; Total fan-out                               ; 18834                                ;
+; Average fan-out                             ; 3.57                                 ;
++---------------------------------------------+--------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                        ;
++---------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                  ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                               ; Library Name ;
++---------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------+--------------+
+; |leaf_soc                                   ; 3539 (183)        ; 1648 (0)     ; 524288      ; 0            ; 0       ; 0         ; 12   ; 0            ; |leaf_soc                                                                                                         ; work         ;
+;    |debug_reg:soc_dbg|                      ; 11 (11)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|debug_reg:soc_dbg                                                                                       ; work         ;
+;    |leaf:soc_cpu|                           ; 2986 (0)          ; 1385 (0)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu                                                                                            ; work         ;
+;       |core:leaf_core|                      ; 2958 (93)         ; 1314 (93)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core                                                                             ; work         ;
+;          |id_ex_stage:core_id_ex_stage|     ; 2805 (4)          ; 1191 (0)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage                                                ; work         ;
+;             |br_detector:stage_br_detector| ; 85 (85)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|br_detector:stage_br_detector                  ; work         ;
+;             |csrs:stage_csrs|               ; 325 (325)         ; 199 (199)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs                                ; work         ;
+;             |ex_block:stage_ex_block|       ; 727 (112)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block                        ; work         ;
+;                |alu:ex_alu|                 ; 608 (608)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu             ; work         ;
+;                |alu_ctrl:ex_alu_ctrl|       ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu_ctrl:ex_alu_ctrl   ; work         ;
+;             |id_block:stage_id_block|       ; 75 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block                        ; work         ;
+;                |imm_gen:id_imm_gen|         ; 48 (48)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block|imm_gen:id_imm_gen     ; work         ;
+;                |main_ctrl:id_main_ctrl|     ; 27 (27)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block|main_ctrl:id_main_ctrl ; work         ;
+;             |int_strg:stage_int_strg|       ; 1504 (125)        ; 992 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg                        ; work         ;
+;                |reg_file:int_strg_rf|       ; 1379 (1379)       ; 992 (992)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf   ; work         ;
+;             |lsu:stage_lsu|                 ; 85 (85)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|lsu:stage_lsu                                  ; work         ;
+;          |if_stage:core_if_stage|           ; 60 (60)           ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage                                                      ; work         ;
+;       |wb_ctrl:leaf_master|                 ; 28 (28)           ; 71 (71)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|leaf:soc_cpu|wb_ctrl:leaf_master                                                                        ; work         ;
+;    |ram:soc_ram|                            ; 24 (10)           ; 5 (1)        ; 524288      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram                                                                                             ; work         ;
+;       |altsyncram:mem0_rtl_0|               ; 8 (0)             ; 1 (0)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem0_rtl_0                                                                       ; work         ;
+;          |altsyncram_c3e1:auto_generated|   ; 8 (0)             ; 1 (1)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem0_rtl_0|altsyncram_c3e1:auto_generated                                        ; work         ;
+;             |decode_jsa:decode2|            ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem0_rtl_0|altsyncram_c3e1:auto_generated|decode_jsa:decode2                     ; work         ;
+;             |mux_3nb:mux3|                  ; 6 (6)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem0_rtl_0|altsyncram_c3e1:auto_generated|mux_3nb:mux3                           ; work         ;
+;       |altsyncram:mem1_rtl_0|               ; 2 (0)             ; 1 (0)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem1_rtl_0                                                                       ; work         ;
+;          |altsyncram_c3e1:auto_generated|   ; 2 (0)             ; 1 (1)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem1_rtl_0|altsyncram_c3e1:auto_generated                                        ; work         ;
+;             |decode_jsa:decode2|            ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem1_rtl_0|altsyncram_c3e1:auto_generated|decode_jsa:decode2                     ; work         ;
+;       |altsyncram:mem2_rtl_0|               ; 2 (0)             ; 1 (0)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem2_rtl_0                                                                       ; work         ;
+;          |altsyncram_c3e1:auto_generated|   ; 2 (0)             ; 1 (1)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem2_rtl_0|altsyncram_c3e1:auto_generated                                        ; work         ;
+;             |decode_jsa:decode2|            ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem2_rtl_0|altsyncram_c3e1:auto_generated|decode_jsa:decode2                     ; work         ;
+;       |altsyncram:mem3_rtl_0|               ; 2 (0)             ; 1 (0)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem3_rtl_0                                                                       ; work         ;
+;          |altsyncram_c3e1:auto_generated|   ; 2 (0)             ; 1 (1)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem3_rtl_0|altsyncram_c3e1:auto_generated                                        ; work         ;
+;             |decode_jsa:decode2|            ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|ram:soc_ram|altsyncram:mem3_rtl_0|altsyncram_c3e1:auto_generated|decode_jsa:decode2                     ; work         ;
+;    |rom:soc_rom|                            ; 74 (74)           ; 29 (29)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|rom:soc_rom                                                                                             ; work         ;
+;    |uart_wbsl:soc_io|                       ; 261 (4)           ; 221 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io                                                                                        ; work         ;
+;       |uart:internal_uart|                  ; 257 (21)          ; 221 (16)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart                                                                     ; work         ;
+;          |fifo:rx_fifo|                     ; 84 (84)           ; 71 (71)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|fifo:rx_fifo                                                        ; work         ;
+;          |fifo:tx_fifo|                     ; 24 (24)           ; 71 (71)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|fifo:tx_fifo                                                        ; work         ;
+;          |uart_rx:receiver|                 ; 51 (16)           ; 32 (5)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver                                                    ; work         ;
+;             |down_counter:baud_counter|     ; 31 (31)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter                          ; work         ;
+;             |down_counter:rx_counter|       ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter                            ; work         ;
+;             |sipo:rx_sipo|                  ; 1 (1)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo                                       ; work         ;
+;          |uart_tx:transmitter|              ; 77 (15)           ; 31 (4)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter                                                 ; work         ;
+;             |down_counter:baud_counter|     ; 16 (16)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter                       ; work         ;
+;             |down_counter:tx_counter|       ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:tx_counter                         ; work         ;
+;             |piso:tx_piso|                  ; 43 (43)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso                                    ; work         ;
++---------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                  ;
++-----------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+; Name                                                                        ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF  ;
++-----------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+; ram:soc_ram|altsyncram:mem0_rtl_0|altsyncram_c3e1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 16384        ; 8            ; 16384        ; 8            ; 131072 ; None ;
+; ram:soc_ram|altsyncram:mem1_rtl_0|altsyncram_c3e1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 16384        ; 8            ; 16384        ; 8            ; 131072 ; None ;
+; ram:soc_ram|altsyncram:mem2_rtl_0|altsyncram_c3e1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 16384        ; 8            ; 16384        ; 8            ; 131072 ; None ;
+; ram:soc_ram|altsyncram:mem3_rtl_0|altsyncram_c3e1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 16384        ; 8            ; 16384        ; 8            ; 131072 ; None ;
++-----------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|curr_state                             ;
++---------------------+--------------------+--------------------+---------------------+-----------------+------------------+
+; Name                ; curr_state.TX_STOP ; curr_state.TX_DATA ; curr_state.TX_START ; curr_state.IDLE ; curr_state.START ;
++---------------------+--------------------+--------------------+---------------------+-----------------+------------------+
+; curr_state.START    ; 0                  ; 0                  ; 0                   ; 0               ; 0                ;
+; curr_state.IDLE     ; 0                  ; 0                  ; 0                   ; 1               ; 1                ;
+; curr_state.TX_START ; 0                  ; 0                  ; 1                   ; 0               ; 1                ;
+; curr_state.TX_DATA  ; 0                  ; 1                  ; 0                   ; 0               ; 1                ;
+; curr_state.TX_STOP  ; 1                  ; 0                  ; 0                   ; 0               ; 1                ;
++---------------------+--------------------+--------------------+---------------------+-----------------+------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|curr_state                                ;
++---------------------+--------------------+--------------------+---------------------+-----------------+------------------+
+; Name                ; curr_state.RX_STOP ; curr_state.RX_DATA ; curr_state.RX_START ; curr_state.IDLE ; curr_state.START ;
++---------------------+--------------------+--------------------+---------------------+-----------------+------------------+
+; curr_state.START    ; 0                  ; 0                  ; 0                   ; 0               ; 0                ;
+; curr_state.IDLE     ; 0                  ; 0                  ; 0                   ; 1               ; 1                ;
+; curr_state.RX_START ; 0                  ; 0                  ; 1                   ; 0               ; 1                ;
+; curr_state.RX_DATA  ; 0                  ; 1                  ; 0                   ; 0               ; 1                ;
+; curr_state.RX_STOP  ; 1                  ; 0                  ; 0                   ; 0               ; 1                ;
++---------------------+--------------------+--------------------+---------------------+-----------------+------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |leaf_soc|leaf:soc_cpu|wb_ctrl:leaf_master|curr_state                                                                                                              ;
++-----------------------+--------------------+-----------------------+----------------------+----------------------+----------------------+-----------------------+------------------+
+; Name                  ; curr_state.EXECUTE ; curr_state.WRITE_DATA ; curr_state.RMW_CYCLE ; curr_state.READ_DATA ; curr_state.BRD_CYCLE ; curr_state.READ_INSTR ; curr_state.START ;
++-----------------------+--------------------+-----------------------+----------------------+----------------------+----------------------+-----------------------+------------------+
+; curr_state.START      ; 0                  ; 0                     ; 0                    ; 0                    ; 0                    ; 0                     ; 0                ;
+; curr_state.READ_INSTR ; 0                  ; 0                     ; 0                    ; 0                    ; 0                    ; 1                     ; 1                ;
+; curr_state.BRD_CYCLE  ; 0                  ; 0                     ; 0                    ; 0                    ; 1                    ; 0                     ; 1                ;
+; curr_state.READ_DATA  ; 0                  ; 0                     ; 0                    ; 1                    ; 0                    ; 0                     ; 1                ;
+; curr_state.RMW_CYCLE  ; 0                  ; 0                     ; 1                    ; 0                    ; 0                    ; 0                     ; 1                ;
+; curr_state.WRITE_DATA ; 0                  ; 1                     ; 0                    ; 0                    ; 0                    ; 0                     ; 1                ;
+; curr_state.EXECUTE    ; 1                  ; 0                     ; 0                    ; 0                    ; 0                    ; 0                     ; 1                ;
++-----------------------+--------------------+-----------------------+----------------------+----------------------+----------------------+-----------------------+------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                  ;
++----------------------------------------------------+----------------------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal                    ; Free of Timing Hazards ;
++----------------------------------------------------+----------------------------------------+------------------------+
+; leaf:soc_cpu|wb_ctrl:leaf_master|clk               ; leaf:soc_cpu|wb_ctrl:leaf_master|cyc_o ; yes                    ;
+; Number of user-specified and inferred latches = 1  ;                                        ;                        ;
++----------------------------------------------------+----------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                    ;
++-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
+; Register name                                                                                                     ; Reason for Removal                                                                ;
++-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mip_mtip                                 ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mip_meip                                 ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mip_msip                                 ; Stuck at GND due to stuck port data_in                                            ;
+; rom:soc_rom|dat_o[1]                                                                                              ; Merged with rom:soc_rom|dat_o[0]                                                  ;
+; rom:soc_rom|dat_o[19]                                                                                             ; Merged with rom:soc_rom|dat_o[18]                                                 ;
+; leaf:soc_cpu|core:leaf_core|next_pc_reg[1]                                                                        ; Merged with leaf:soc_cpu|core:leaf_core|next_pc_reg[0]                            ;
+; leaf:soc_cpu|core:leaf_core|pc_reg[0,1]                                                                           ; Merged with leaf:soc_cpu|core:leaf_core|next_pc_reg[0]                            ;
+; leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage|pc_reg[1]                                                      ; Merged with leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage|pc_reg[0]          ;
+; rom:soc_rom|dat_o[31]                                                                                             ; Merged with rom:soc_rom|dat_o[28]                                                 ;
+; rom:soc_rom|dat_o[18]                                                                                             ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage|pc_reg[0]                                                      ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|next_pc_reg[0]                                                                        ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][15] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][16] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][0]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][17] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][18] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][1]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][19] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][20] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][21] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][22] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][2]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][23] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][24] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][25] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][26] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][27] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][28] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][29] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][30] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][3]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][31] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][4]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][14] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][13] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][12] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][11] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][10] ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][9]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][8]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][7]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][6]  ; Stuck at GND due to stuck port data_in                                            ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][5]  ; Stuck at GND due to stuck port data_in                                            ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|curr_state.START                                          ; Merged with uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|curr_state.START ;
+; Total Number of Removed Registers = 46                                                                            ;                                                                                   ;
++-------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                                                       ;
++-----------------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------------------------------------+
+; Register name                                                                     ; Reason for Removal        ; Registers Removed due to This Register                                                                            ;
++-----------------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------------------------------------+
+; leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage|pc_reg[0]                      ; Stuck at GND              ; leaf:soc_cpu|core:leaf_core|next_pc_reg[0],                                                                       ;
+;                                                                                   ; due to stuck port data_in ; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][0], ;
+;                                                                                   ;                           ; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][1]  ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mip_mtip ; Stuck at GND              ; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][7]  ;
+;                                                                                   ; due to stuck port data_in ;                                                                                                                   ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mip_meip ; Stuck at GND              ; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][11] ;
+;                                                                                   ; due to stuck port data_in ;                                                                                                                   ;
+; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mip_msip ; Stuck at GND              ; leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][3]  ;
+;                                                                                   ; due to stuck port data_in ;                                                                                                                   ;
++-----------------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1648  ;
+; Number of registers using Synchronous Clear  ; 130   ;
+; Number of registers using Synchronous Load   ; 34    ;
+; Number of registers using Asynchronous Clear ; 219   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 1394  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                                              ;
++-------------------------------------------------------------------------------------------------+---------+
+; Inverted Register                                                                               ; Fan out ;
++-------------------------------------------------------------------------------------------------+---------+
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[0]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[1]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[2]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[3]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[4]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[5]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[6]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[7]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[8]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[9]  ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[10] ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[11] ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[12] ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[13] ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[14] ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[15] ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[0]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[1]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[2]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[3]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[4]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[5]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[6]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[7]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[8]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[9]     ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[10]    ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[11]    ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[12]    ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[13]    ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[14]    ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[15]    ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[0]               ; 1       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:tx_counter|inter_val[0]    ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:tx_counter|inter_val[2]    ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:tx_counter|inter_val[1]    ; 3       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[1]               ; 1       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[0]                                                 ; 3       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[1]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[2]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[3]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[4]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[5]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[6]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[7]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[8]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[9]                                                 ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[10]                                                ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[11]                                                ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[12]                                                ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[13]                                                ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[14]                                                ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|baud_div[15]                                                ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[2]               ; 1       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[3]               ; 1       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[4]               ; 1       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo|inter_val[5]                  ; 9       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo|inter_val[3]                  ; 9       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo|inter_val[6]                  ; 9       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo|inter_val[0]                  ; 8       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo|inter_val[1]                  ; 9       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo|inter_val[4]                  ; 9       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo|inter_val[2]                  ; 9       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo|inter_val[7]                  ; 9       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[5]               ; 1       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter|inter_val[0]       ; 4       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter|inter_val[2]       ; 2       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter|inter_val[1]       ; 3       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[6]               ; 1       ;
+; uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[7]               ; 1       ;
+; Total number of inverted registers = 70                                                         ;         ;
++-------------------------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions              ;
++---------------------------+------------------------+------+
+; Register Name             ; Megafunction           ; Type ;
++---------------------------+------------------------+------+
+; ram:soc_ram|dat_o[0..7]   ; ram:soc_ram|mem0_rtl_0 ; RAM  ;
+; ram:soc_ram|dat_o[16..23] ; ram:soc_ram|mem2_rtl_0 ; RAM  ;
+; ram:soc_ram|dat_o[8..15]  ; ram:soc_ram|mem1_rtl_0 ; RAM  ;
+; ram:soc_ram|dat_o[24..31] ; ram:soc_ram|mem3_rtl_0 ; RAM  ;
++---------------------------+------------------------+------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |leaf_soc|debug_reg:soc_dbg|value[7]                                                                                       ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage|pc_reg[21]                                                    ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mtvec_base[14]                          ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mscratch[24]                            ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mepc[12]                                ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mcause_exc[0]                           ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mtval[15]                               ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mie_meie                                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|mstatus_mie                             ;
+; 3:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |leaf_soc|rom:soc_rom|dat_o[30]                                                                                            ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|regs[0][2] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter|inter_val[1]                   ;
+; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; Yes        ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter|inter_val[2]                      ;
+; 9:1                ; 7 bits    ; 42 LEs        ; 42 LEs               ; 0 LEs                  ; Yes        ; |leaf_soc|uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso|inter_val[5]                                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|ShiftRight0          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|ShiftLeft0           ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|wb_ctrl:leaf_master|adr_o[3]                                                                        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|lsu:stage_lsu|dmwr_data[12]                             ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|ShiftRight0          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|ShiftLeft0           ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 128 LEs              ; 32 LEs                 ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|Mux18                                   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |leaf_soc|cpu_drd[18]                                                                                                      ;
+; 4:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |leaf_soc|cpu_drd[23]                                                                                                      ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block|imm_gen:id_imm_gen|Mux5         ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block|imm_gen:id_imm_gen|Mux21        ;
+; 6:1                ; 17 bits   ; 68 LEs        ; 68 LEs               ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|Mux8                            ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu_ctrl:ex_alu_ctrl|op[1]      ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|wb_ctrl:leaf_master|sel_o[1]                                                                        ;
+; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|Mux17      ;
+; 32:1               ; 32 bits   ; 672 LEs       ; 672 LEs              ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf|Mux54      ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; No         ; |leaf_soc|cpu_drd[13]                                                                                                      ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block|imm_gen:id_imm_gen|Mux15        ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block|imm_gen:id_imm_gen|Mux27        ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 8 LEs                ; 2 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|Mux30                           ;
+; 8:1                ; 5 bits    ; 25 LEs        ; 20 LEs               ; 5 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|Mux29                           ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|Selector30                              ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 10 LEs               ; 2 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|Mux48                ;
+; 7:1                ; 22 bits   ; 88 LEs        ; 88 LEs               ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|Selector7                               ;
+; 11:1               ; 6 bits    ; 42 LEs        ; 30 LEs               ; 12 LEs                 ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|Mux53                ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 12 LEs               ; 2 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|Mux40                ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|Selector23                              ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 15 LEs               ; 0 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs|Selector29                              ;
+; 11:1               ; 7 bits    ; 49 LEs        ; 42 LEs               ; 7 LEs                  ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|Mux54                ;
+; 12:1               ; 13 bits   ; 104 LEs       ; 78 LEs               ; 26 LEs                 ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu|Mux33                ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; No         ; |leaf_soc|cpu_drd[7]                                                                                                       ;
+; 16:1               ; 6 bits    ; 60 LEs        ; 54 LEs               ; 6 LEs                  ; No         ; |leaf_soc|cpu_drd[5]                                                                                                       ;
+; 12:1               ; 7 bits    ; 56 LEs        ; 42 LEs               ; 14 LEs                 ; No         ; |leaf_soc|leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|Mux23                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Source assignments for ram:soc_ram|altsyncram:mem0_rtl_0|altsyncram_c3e1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------+
+; Assignment                      ; Value              ; From ; To                        ;
++---------------------------------+--------------------+------+---------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                         ;
++---------------------------------+--------------------+------+---------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Source assignments for ram:soc_ram|altsyncram:mem2_rtl_0|altsyncram_c3e1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------+
+; Assignment                      ; Value              ; From ; To                        ;
++---------------------------------+--------------------+------+---------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                         ;
++---------------------------------+--------------------+------+---------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Source assignments for ram:soc_ram|altsyncram:mem1_rtl_0|altsyncram_c3e1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------+
+; Assignment                      ; Value              ; From ; To                        ;
++---------------------------------+--------------------+------+---------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                         ;
++---------------------------------+--------------------+------+---------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Source assignments for ram:soc_ram|altsyncram:mem3_rtl_0|altsyncram_c3e1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------+
+; Assignment                      ; Value              ; From ; To                        ;
++---------------------------------+--------------------+------+---------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                         ;
++---------------------------------+--------------------+------+---------------------------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: leaf:soc_cpu           ;
++----------------+----------------------------------+-----------------+
+; Parameter Name ; Value                            ; Type            ;
++----------------+----------------------------------+-----------------+
+; reset_addr     ; 00000000000000000000000100000000 ; Unsigned Binary ;
++----------------+----------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: leaf:soc_cpu|core:leaf_core ;
++----------------+----------------------------------+----------------------+
+; Parameter Name ; Value                            ; Type                 ;
++----------------+----------------------------------+----------------------+
+; reset_addr     ; 00000000000000000000000100000000 ; Unsigned Binary      ;
++----------------+----------------------------------+----------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage ;
++----------------+----------------------------------+---------------------------------------------+
+; Parameter Name ; Value                            ; Type                                        ;
++----------------+----------------------------------+---------------------------------------------+
+; reset_addr     ; 00000000000000000000000100000000 ; Unsigned Binary                             ;
++----------------+----------------------------------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs ;
++----------------+----------------------------------+-------------------------------------------------------------------+
+; Parameter Name ; Value                            ; Type                                                              ;
++----------------+----------------------------------+-------------------------------------------------------------------+
+; mhart_id       ; 00000000000000000000000000000000 ; Unsigned Binary                                                   ;
++----------------+----------------------------------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|fifo:rx_fifo ;
++----------------+-------+----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                 ;
++----------------+-------+----------------------------------------------------------------------+
+; size           ; 8     ; Signed Integer                                                       ;
+; bits           ; 8     ; Signed Integer                                                       ;
++----------------+-------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                               ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+; bits           ; 16    ; Signed Integer                                                                                     ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; bits           ; 3     ; Signed Integer                                                                                   ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo ;
++----------------+-------+---------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                  ;
++----------------+-------+---------------------------------------------------------------------------------------+
+; bits           ; 8     ; Signed Integer                                                                        ;
++----------------+-------+---------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|fifo:tx_fifo ;
++----------------+-------+----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                 ;
++----------------+-------+----------------------------------------------------------------------+
+; size           ; 8     ; Signed Integer                                                       ;
+; bits           ; 8     ; Signed Integer                                                       ;
++----------------+-------+----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:baud_counter ;
++----------------+-------+-------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                  ;
++----------------+-------+-------------------------------------------------------------------------------------------------------+
+; bits           ; 16    ; Signed Integer                                                                                        ;
++----------------+-------+-------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:tx_counter ;
++----------------+-------+-----------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                ;
++----------------+-------+-----------------------------------------------------------------------------------------------------+
+; bits           ; 3     ; Signed Integer                                                                                      ;
++----------------+-------+-----------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; bits           ; 8     ; Signed Integer                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: rom:soc_rom ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; bits           ; 8     ; Signed Integer                  ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ram:soc_ram ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; bits           ; 16    ; Signed Integer                  ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: ram:soc_ram|altsyncram:mem0_rtl_0 ;
++------------------------------------+----------------------+------------------------+
+; Parameter Name                     ; Value                ; Type                   ;
++------------------------------------+----------------------+------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE         ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                ;
+; WIDTH_A                            ; 8                    ; Untyped                ;
+; WIDTHAD_A                          ; 14                   ; Untyped                ;
+; NUMWORDS_A                         ; 16384                ; Untyped                ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                ;
+; WIDTH_B                            ; 8                    ; Untyped                ;
+; WIDTHAD_B                          ; 14                   ; Untyped                ;
+; NUMWORDS_B                         ; 16384                ; Untyped                ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                ;
+; BYTE_SIZE                          ; 8                    ; Untyped                ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                ;
+; INIT_FILE                          ; UNUSED               ; Untyped                ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                ;
+; CBXI_PARAMETER                     ; altsyncram_c3e1      ; Untyped                ;
++------------------------------------+----------------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: ram:soc_ram|altsyncram:mem2_rtl_0 ;
++------------------------------------+----------------------+------------------------+
+; Parameter Name                     ; Value                ; Type                   ;
++------------------------------------+----------------------+------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE         ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                ;
+; WIDTH_A                            ; 8                    ; Untyped                ;
+; WIDTHAD_A                          ; 14                   ; Untyped                ;
+; NUMWORDS_A                         ; 16384                ; Untyped                ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                ;
+; WIDTH_B                            ; 8                    ; Untyped                ;
+; WIDTHAD_B                          ; 14                   ; Untyped                ;
+; NUMWORDS_B                         ; 16384                ; Untyped                ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                ;
+; BYTE_SIZE                          ; 8                    ; Untyped                ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                ;
+; INIT_FILE                          ; UNUSED               ; Untyped                ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                ;
+; CBXI_PARAMETER                     ; altsyncram_c3e1      ; Untyped                ;
++------------------------------------+----------------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: ram:soc_ram|altsyncram:mem1_rtl_0 ;
++------------------------------------+----------------------+------------------------+
+; Parameter Name                     ; Value                ; Type                   ;
++------------------------------------+----------------------+------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE         ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                ;
+; WIDTH_A                            ; 8                    ; Untyped                ;
+; WIDTHAD_A                          ; 14                   ; Untyped                ;
+; NUMWORDS_A                         ; 16384                ; Untyped                ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                ;
+; WIDTH_B                            ; 8                    ; Untyped                ;
+; WIDTHAD_B                          ; 14                   ; Untyped                ;
+; NUMWORDS_B                         ; 16384                ; Untyped                ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                ;
+; BYTE_SIZE                          ; 8                    ; Untyped                ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                ;
+; INIT_FILE                          ; UNUSED               ; Untyped                ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                ;
+; CBXI_PARAMETER                     ; altsyncram_c3e1      ; Untyped                ;
++------------------------------------+----------------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: ram:soc_ram|altsyncram:mem3_rtl_0 ;
++------------------------------------+----------------------+------------------------+
+; Parameter Name                     ; Value                ; Type                   ;
++------------------------------------+----------------------+------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE         ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                ;
+; WIDTH_A                            ; 8                    ; Untyped                ;
+; WIDTHAD_A                          ; 14                   ; Untyped                ;
+; NUMWORDS_A                         ; 16384                ; Untyped                ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                ;
+; WIDTH_B                            ; 8                    ; Untyped                ;
+; WIDTHAD_B                          ; 14                   ; Untyped                ;
+; NUMWORDS_B                         ; 16384                ; Untyped                ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                ;
+; BYTE_SIZE                          ; 8                    ; Untyped                ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                ;
+; INIT_FILE                          ; UNUSED               ; Untyped                ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                ;
+; CBXI_PARAMETER                     ; altsyncram_c3e1      ; Untyped                ;
++------------------------------------+----------------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                              ;
++-------------------------------------------+-----------------------------------+
+; Name                                      ; Value                             ;
++-------------------------------------------+-----------------------------------+
+; Number of entity instances                ; 4                                 ;
+; Entity Instance                           ; ram:soc_ram|altsyncram:mem0_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                         ;
+;     -- WIDTH_A                            ; 8                                 ;
+;     -- NUMWORDS_A                         ; 16384                             ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                      ;
+;     -- WIDTH_B                            ; 8                                 ;
+;     -- NUMWORDS_B                         ; 16384                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                            ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                      ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                              ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                         ;
+; Entity Instance                           ; ram:soc_ram|altsyncram:mem2_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                         ;
+;     -- WIDTH_A                            ; 8                                 ;
+;     -- NUMWORDS_A                         ; 16384                             ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                      ;
+;     -- WIDTH_B                            ; 8                                 ;
+;     -- NUMWORDS_B                         ; 16384                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                            ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                      ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                              ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                         ;
+; Entity Instance                           ; ram:soc_ram|altsyncram:mem1_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                         ;
+;     -- WIDTH_A                            ; 8                                 ;
+;     -- NUMWORDS_A                         ; 16384                             ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                      ;
+;     -- WIDTH_B                            ; 8                                 ;
+;     -- NUMWORDS_B                         ; 16384                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                            ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                      ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                              ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                         ;
+; Entity Instance                           ; ram:soc_ram|altsyncram:mem3_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                         ;
+;     -- WIDTH_A                            ; 8                                 ;
+;     -- NUMWORDS_A                         ; 16384                             ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                      ;
+;     -- WIDTH_B                            ; 8                                 ;
+;     -- NUMWORDS_B                         ; 16384                             ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                            ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                      ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                              ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                         ;
++-------------------------------------------+-----------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|down_counter:tx_counter" ;
++------+-------+----------+-----------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                           ;
++------+-------+----------+-----------------------------------------------------------------------------------+
+; mode ; Input ; Info     ; Stuck at GND                                                                      ;
+; load ; Input ; Info     ; Stuck at VCC                                                                      ;
++------+-------+----------+-----------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter" ;
++------+-------+----------+--------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                        ;
++------+-------+----------+--------------------------------------------------------------------------------+
+; mode ; Input ; Info     ; Stuck at GND                                                                   ;
+; load ; Input ; Info     ; Stuck at VCC                                                                   ;
++------+-------+----------+--------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------+
+; Port Connectivity Checks: "leaf:soc_cpu|core:leaf_core" ;
++--------+-------+----------+-----------------------------+
+; Port   ; Type  ; Severity ; Details                     ;
++--------+-------+----------+-----------------------------+
+; ex_irq ; Input ; Info     ; Stuck at GND                ;
+; sw_irq ; Input ; Info     ; Stuck at GND                ;
+; tm_irq ; Input ; Info     ; Stuck at GND                ;
++--------+-------+----------+-----------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "leaf:soc_cpu"                                                                              ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; adr_o[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:20     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed Apr 26 15:08:22 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off leaf_soc -c leaf_soc
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file sources/wb_ctrl.vhdl
+    Info (12022): Found design unit 1: wb_ctrl-wb_ctrl_arch
+    Info (12023): Found entity 1: wb_ctrl
+Info (12021): Found 2 design units, including 1 entities, in source file sources/uart_wbsl.vhdl
+    Info (12022): Found design unit 1: uart_wbsl-rtl
+    Info (12023): Found entity 1: uart_wbsl
+Info (12021): Found 2 design units, including 1 entities, in source file sources/uart_tx.vhdl
+    Info (12022): Found design unit 1: uart_tx-uart_tx_arch
+    Info (12023): Found entity 1: uart_tx
+Info (12021): Found 2 design units, including 1 entities, in source file sources/uart_rx.vhdl
+    Info (12022): Found design unit 1: uart_rx-uart_rx_arch
+    Info (12023): Found entity 1: uart_rx
+Info (12021): Found 1 design units, including 0 entities, in source file sources/uart_pkg.vhdl
+    Info (12022): Found design unit 1: uart_pkg
+Info (12021): Found 2 design units, including 1 entities, in source file sources/uart.vhdl
+    Info (12022): Found design unit 1: uart-uar_arch
+    Info (12023): Found entity 1: uart
+Info (12021): Found 2 design units, including 1 entities, in source file sources/soc_syscon.vhdl
+    Info (12022): Found design unit 1: soc_syscon-rtl
+    Info (12023): Found entity 1: soc_syscon
+Info (12021): Found 2 design units, including 1 entities, in source file sources/sipo.vhdl
+    Info (12022): Found design unit 1: sipo-sipo_arch
+    Info (12023): Found entity 1: sipo
+Info (12021): Found 2 design units, including 1 entities, in source file sources/rom.vhdl
+    Info (12022): Found design unit 1: rom-arch
+    Info (12023): Found entity 1: rom
+Info (12021): Found 2 design units, including 1 entities, in source file sources/reg_file.vhdl
+    Info (12022): Found design unit 1: reg_file-reg_file_arch
+    Info (12023): Found entity 1: reg_file
+Info (12021): Found 2 design units, including 1 entities, in source file sources/ram.vhdl
+    Info (12022): Found design unit 1: ram-rtl
+    Info (12023): Found entity 1: ram
+Info (12021): Found 2 design units, including 1 entities, in source file sources/piso.vhdl
+    Info (12022): Found design unit 1: piso-piso_arch
+    Info (12023): Found entity 1: piso
+Info (12021): Found 2 design units, including 1 entities, in source file sources/main_ctrl.vhdl
+    Info (12022): Found design unit 1: main_ctrl-main_ctrl_arch
+    Info (12023): Found entity 1: main_ctrl
+Info (12021): Found 2 design units, including 1 entities, in source file sources/lsu.vhdl
+    Info (12022): Found design unit 1: lsu-lsu_arch
+    Info (12023): Found entity 1: lsu
+Info (12021): Found 1 design units, including 0 entities, in source file sources/leaf_soc_pkg.vhdl
+    Info (12022): Found design unit 1: leaf_soc_pkg
+Info (12021): Found 2 design units, including 1 entities, in source file sources/leaf.vhdl
+    Info (12022): Found design unit 1: leaf-leaf_arch
+    Info (12023): Found entity 1: leaf
+Info (12021): Found 2 design units, including 1 entities, in source file sources/int_strg.vhdl
+    Info (12022): Found design unit 1: int_strg-int_strg_arch
+    Info (12023): Found entity 1: int_strg
+Info (12021): Found 2 design units, including 1 entities, in source file sources/imm_gen.vhdl
+    Info (12022): Found design unit 1: imm_gen-imm_gen_arch
+    Info (12023): Found entity 1: imm_gen
+Info (12021): Found 2 design units, including 1 entities, in source file sources/if_stage.vhdl
+    Info (12022): Found design unit 1: if_stage-if_stage_arch
+    Info (12023): Found entity 1: if_stage
+Info (12021): Found 2 design units, including 1 entities, in source file sources/id_ex_stage.vhdl
+    Info (12022): Found design unit 1: id_ex_stage-id_ex_stage_arch
+    Info (12023): Found entity 1: id_ex_stage
+Info (12021): Found 2 design units, including 1 entities, in source file sources/id_block.vhdl
+    Info (12022): Found design unit 1: id_block-id_block_arch
+    Info (12023): Found entity 1: id_block
+Info (12021): Found 2 design units, including 1 entities, in source file sources/fifo.vhdl
+    Info (12022): Found design unit 1: fifo-fifo_arch
+    Info (12023): Found entity 1: fifo
+Info (12021): Found 2 design units, including 1 entities, in source file sources/ex_block.vhdl
+    Info (12022): Found design unit 1: ex_block-ex_block_arch
+    Info (12023): Found entity 1: ex_block
+Info (12021): Found 2 design units, including 1 entities, in source file sources/down_counter.vhdl
+    Info (12022): Found design unit 1: down_counter-down_counter_tb
+    Info (12023): Found entity 1: down_counter
+Info (12021): Found 2 design units, including 1 entities, in source file sources/debug_reg.vhdl
+    Info (12022): Found design unit 1: debug_reg-arch
+    Info (12023): Found entity 1: debug_reg
+Info (12021): Found 2 design units, including 1 entities, in source file sources/csrs.vhdl
+    Info (12022): Found design unit 1: csrs-csrs_arch
+    Info (12023): Found entity 1: csrs
+Info (12021): Found 1 design units, including 0 entities, in source file sources/core_pkg.vhdl
+    Info (12022): Found design unit 1: core_pkg
+Info (12021): Found 2 design units, including 1 entities, in source file sources/core.vhdl
+    Info (12022): Found design unit 1: core-core_arch
+    Info (12023): Found entity 1: core
+Info (12021): Found 2 design units, including 1 entities, in source file sources/br_detector.vhdl
+    Info (12022): Found design unit 1: br_detector-br_detector_arch
+    Info (12023): Found entity 1: br_detector
+Info (12021): Found 2 design units, including 1 entities, in source file sources/alu_ctrl.vhdl
+    Info (12022): Found design unit 1: alu_ctrl-alu_ctrl_arch
+    Info (12023): Found entity 1: alu_ctrl
+Info (12021): Found 2 design units, including 1 entities, in source file sources/alu.vhdl
+    Info (12022): Found design unit 1: alu-alu_arch
+    Info (12023): Found entity 1: alu
+Info (12021): Found 2 design units, including 1 entities, in source file leaf_soc.vhdl
+    Info (12022): Found design unit 1: leaf_soc-arch
+    Info (12023): Found entity 1: leaf_soc
+Info (12127): Elaborating entity "leaf_soc" for the top level hierarchy
+Info (12128): Elaborating entity "soc_syscon" for hierarchy "soc_syscon:syscon"
+Info (12128): Elaborating entity "leaf" for hierarchy "leaf:soc_cpu"
+Info (12128): Elaborating entity "wb_ctrl" for hierarchy "leaf:soc_cpu|wb_ctrl:leaf_master"
+Info (10041): Inferred latch for "clk" at wb_ctrl.vhdl(100)
+Info (12128): Elaborating entity "core" for hierarchy "leaf:soc_cpu|core:leaf_core"
+Info (12128): Elaborating entity "if_stage" for hierarchy "leaf:soc_cpu|core:leaf_core|if_stage:core_if_stage"
+Info (12128): Elaborating entity "id_ex_stage" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage"
+Info (12128): Elaborating entity "id_block" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block"
+Info (12128): Elaborating entity "imm_gen" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block|imm_gen:id_imm_gen"
+Info (12128): Elaborating entity "main_ctrl" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|id_block:stage_id_block|main_ctrl:id_main_ctrl"
+Info (12128): Elaborating entity "int_strg" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg"
+Info (12128): Elaborating entity "reg_file" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|int_strg:stage_int_strg|reg_file:int_strg_rf"
+Info (12128): Elaborating entity "br_detector" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|br_detector:stage_br_detector"
+Info (12128): Elaborating entity "csrs" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|csrs:stage_csrs"
+Info (12128): Elaborating entity "ex_block" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block"
+Info (12128): Elaborating entity "alu_ctrl" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu_ctrl:ex_alu_ctrl"
+Info (12128): Elaborating entity "alu" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|ex_block:stage_ex_block|alu:ex_alu"
+Warning (10036): Verilog HDL or VHDL warning at alu.vhdl(32): object "logic_opd0" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at alu.vhdl(33): object "logic_opd1" assigned a value but never read
+Warning (10492): VHDL Process Statement warning at alu.vhdl(121): signal "opd0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at alu.vhdl(121): signal "opd1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at alu.vhdl(122): signal "opd0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at alu.vhdl(122): signal "opd1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at alu.vhdl(123): signal "opd0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at alu.vhdl(123): signal "opd1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "lsu" for hierarchy "leaf:soc_cpu|core:leaf_core|id_ex_stage:core_id_ex_stage|lsu:stage_lsu"
+Info (12128): Elaborating entity "uart_wbsl" for hierarchy "uart_wbsl:soc_io"
+Info (12128): Elaborating entity "uart" for hierarchy "uart_wbsl:soc_io|uart:internal_uart"
+Info (12128): Elaborating entity "fifo" for hierarchy "uart_wbsl:soc_io|uart:internal_uart|fifo:rx_fifo"
+Info (12128): Elaborating entity "uart_rx" for hierarchy "uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver"
+Info (12128): Elaborating entity "down_counter" for hierarchy "uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:baud_counter"
+Info (12128): Elaborating entity "down_counter" for hierarchy "uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|down_counter:rx_counter"
+Info (12128): Elaborating entity "sipo" for hierarchy "uart_wbsl:soc_io|uart:internal_uart|uart_rx:receiver|sipo:rx_sipo"
+Info (12128): Elaborating entity "uart_tx" for hierarchy "uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter"
+Info (12128): Elaborating entity "piso" for hierarchy "uart_wbsl:soc_io|uart:internal_uart|uart_tx:transmitter|piso:tx_piso"
+Info (12128): Elaborating entity "rom" for hierarchy "rom:soc_rom"
+Info (12128): Elaborating entity "ram" for hierarchy "ram:soc_ram"
+Info (12128): Elaborating entity "debug_reg" for hierarchy "debug_reg:soc_dbg"
+Warning (276027): Inferred dual-clock RAM node "ram:soc_ram|mem0_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Warning (276027): Inferred dual-clock RAM node "ram:soc_ram|mem2_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Warning (276027): Inferred dual-clock RAM node "ram:soc_ram|mem1_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Warning (276027): Inferred dual-clock RAM node "ram:soc_ram|mem3_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Info (19000): Inferred 4 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "ram:soc_ram|mem0_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 14
+        Info (286033): Parameter NUMWORDS_A set to 16384
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 14
+        Info (286033): Parameter NUMWORDS_B set to 16384
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "ram:soc_ram|mem2_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 14
+        Info (286033): Parameter NUMWORDS_A set to 16384
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 14
+        Info (286033): Parameter NUMWORDS_B set to 16384
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "ram:soc_ram|mem1_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 14
+        Info (286033): Parameter NUMWORDS_A set to 16384
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 14
+        Info (286033): Parameter NUMWORDS_B set to 16384
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "ram:soc_ram|mem3_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 14
+        Info (286033): Parameter NUMWORDS_A set to 16384
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 14
+        Info (286033): Parameter NUMWORDS_B set to 16384
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (12130): Elaborated megafunction instantiation "ram:soc_ram|altsyncram:mem0_rtl_0"
+Info (12133): Instantiated megafunction "ram:soc_ram|altsyncram:mem0_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "14"
+    Info (12134): Parameter "NUMWORDS_A" = "16384"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "14"
+    Info (12134): Parameter "NUMWORDS_B" = "16384"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_c3e1.tdf
+    Info (12023): Found entity 1: altsyncram_c3e1
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_jsa.tdf
+    Info (12023): Found entity 1: decode_jsa
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_3nb.tdf
+    Info (12023): Found entity 1: mux_3nb
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 4882 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 9 output pins
+    Info (21061): Implemented 4806 logic cells
+    Info (21064): Implemented 64 RAM segments
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 13 warnings
+    Info: Peak virtual memory: 408 megabytes
+    Info: Processing ended: Wed Apr 26 15:08:46 2023
+    Info: Elapsed time: 00:00:24
+    Info: Total CPU time (on all processors): 00:00:19
+
+
