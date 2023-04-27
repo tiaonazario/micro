@@ -1,48 +1,44 @@
 char volatile *iostatus = (char *)0x0;
 char volatile *iodata = (char *)0xC;
 
-void int2string(int num, char *str)
-{
+void int_to_string(int num, char str[]) {
   int i = 0;
-  int isNegative = 0;
-  char tempStr[20]; // Tamanho maximo da string
+  int is_negative = 0;
 
-  // Verifica se o numero e negativo
-  if (num < 0)
-  {
-    isNegative = 1;
-    num = -num;
-  }
-
-  // Lida com o caso especial de 0
-  if (num == 0)
-  {
+  // Trata o caso especial de zero
+  if (num == 0) {
     str[i++] = '0';
     str[i] = '\0';
     return;
   }
 
-  // Converte cada digito em um caractere
-  while (num != 0)
-  {
-    int digit = num % 10;
-    tempStr[i++] = digit + '0';
-    num = num / 10;
+  // Trata números negativos
+  if (num < 0) {
+    is_negative = 1;
+    num = -num;
   }
 
-  // Adiciona o sinal de negativo, se necessario
-  if (isNegative)
-  {
-    tempStr[i++] = '-';
+  // Cria a string reversa dos dígitos
+  while (num > 0) {
+    str[i++] = (num % 10) + '0';
+    num /= 10;
+  }
+
+  // Adiciona o sinal de negativo, se necessário
+  if (is_negative) {
+    str[i++] = '-';
   }
 
   // Inverte a string
   int j;
-  for (j = 0; j < i; j++)
-  {
-    str[j] = tempStr[i - 1 - j];
+  for (j = 0; j < i / 2; j++) {
+    char temp = str[j];
+    str[j] = str[i - j - 1];
+    str[i - j - 1] = temp;
   }
-  str[i] = '\0'; // Adiciona o caractere nulo para terminar a string
+
+  // Adiciona o caractere nulo para terminar a string
+  str[i] = '\0';
 }
 
 void uart_send_string(char *str)
@@ -58,16 +54,14 @@ void uart_send_string(char *str)
 void uart_send_integer(int num)
 {
   char str[20];
-  int2string(num, str);
+  int_to_string(num, str);
   uart_send_string(str);
 }
 
 int main()
 {
 
-  uart_send_string(" ========= CLASSIFICADOR DE NUMEROS PARES E IMPARES ========= \n");
-
-  int arr[] = {112, 98, 12, 80};
+	int arr[] = {1, 2, 3, 4, 5, 6, 7};
   int n = sizeof(arr) / sizeof(arr[0]);
 
   uart_send_string("\n Numeros pares: ");
@@ -76,6 +70,7 @@ int main()
     if (arr[i] % 2 == 0)
     {
       uart_send_integer(arr[i]);
+			uart_send_string(" ");
     }
   }
 
@@ -85,6 +80,7 @@ int main()
     if (arr[i] % 2 != 0)
     {
       uart_send_integer(arr[i]);
+			uart_send_string(" ");
     }
   }
 
