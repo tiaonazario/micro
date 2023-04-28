@@ -49,6 +49,11 @@ void uart_send_string(char *str)
       ;
     *iodata = str[i];
   }
+	
+	// Adiciona o caractere nulo para terminar a string
+  while ((*iostatus & 0x20) != 0x20)
+    ;
+  *iodata = '\0';
 }
 
 void uart_send_integer(unsigned short num)
@@ -61,10 +66,10 @@ void uart_send_integer(unsigned short num)
 int main()
 {
 
-	unsigned short array[] = {1, 2, 3, 4, 5, 6, 7};
+	unsigned short array[] = {7, 2, 9, 4, 8, 15, 1};
   unsigned short size = sizeof(array) / sizeof(array[0]);
 
-  uart_send_string("\nClassificador de pares e impares\n");
+  uart_send_string("\n\nClassificador de pares e impares\n");
   for (unsigned short i = 0; i < size; i++)
   {
     if (array[i] % 2 == 0)
@@ -85,7 +90,8 @@ int main()
     }
   }
 
-  uart_send_string("\nFim...");
+  uart_send_string("\nFim.");
 
   return 0;
 }
+
