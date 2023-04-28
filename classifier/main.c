@@ -64,24 +64,21 @@ int main()
 	unsigned short arr[] = {1, 2, 3, 4, 5, 6, 7};
   unsigned short n = sizeof(arr) / sizeof(arr[0]);
 
-  uart_send_string("\n Numeros pares: ");
+  uart_send_string("\nClassificador de pares e impares\n");
   for (unsigned short i = 0; i < n; i++)
   {
     if (arr[i] % 2 == 0)
     {
       uart_send_integer(arr[i]);
-			uart_send_string(" ");
+			uart_send_string(" é par");
+			uart_send_string("\n");
     }
-  }
-
-  uart_send_string("\n Numeros impares: ");
-  for (unsigned short i = 0; i < n; i++)
-  {
-    if (arr[i] % 2 != 0)
-    {
+		
+		else {
       uart_send_integer(arr[i]);
-			uart_send_string(" ");
-    }
+			uart_send_string(" é impar");
+			uart_send_string("\n");
+		}
   }
 
   return 0;
