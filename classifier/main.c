@@ -1,9 +1,9 @@
 char volatile *iostatus = (char *)0x0;
 char volatile *iodata = (char *)0xC;
 
-void int_to_string(int num, char str[]) {
-  int i = 0;
-  int is_negative = 0;
+void int_to_string(unsigned short num, char str[]) {
+  unsigned short i = 0;
+  unsigned short is_negative = 0;
 
   // Trata o caso especial de zero
   if (num == 0) {
@@ -30,7 +30,7 @@ void int_to_string(int num, char str[]) {
   }
 
   // Inverte a string
-  int j;
+  unsigned short j;
   for (j = 0; j < i / 2; j++) {
     char temp = str[j];
     str[j] = str[i - j - 1];
@@ -43,7 +43,7 @@ void int_to_string(int num, char str[]) {
 
 void uart_send_string(char *str)
 {
-  for (int i = 0; str[i] != '\0'; i++)
+  for (unsigned short i = 0; str[i] != '\0'; i++)
   {
     while ((*iostatus & 0x20) != 0x20)
       ;
@@ -51,7 +51,7 @@ void uart_send_string(char *str)
   }
 }
 
-void uart_send_integer(int num)
+void uart_send_integer(unsigned short num)
 {
   char str[20];
   int_to_string(num, str);
@@ -61,11 +61,11 @@ void uart_send_integer(int num)
 int main()
 {
 
-	int arr[] = {1, 2, 3, 4, 5, 6, 7};
-  int n = sizeof(arr) / sizeof(arr[0]);
+	unsigned short arr[] = {1, 2, 3, 4, 5, 6, 7};
+  unsigned short n = sizeof(arr) / sizeof(arr[0]);
 
   uart_send_string("\n Numeros pares: ");
-  for (int i = 0; i < n; i++)
+  for (unsigned short i = 0; i < n; i++)
   {
     if (arr[i] % 2 == 0)
     {
@@ -75,7 +75,7 @@ int main()
   }
 
   uart_send_string("\n Numeros impares: ");
-  for (int i = 0; i < n; i++)
+  for (unsigned short i = 0; i < n; i++)
   {
     if (arr[i] % 2 != 0)
     {
